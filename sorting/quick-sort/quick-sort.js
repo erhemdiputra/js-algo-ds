@@ -6,12 +6,10 @@ function partition(arr, start = 0, end = arr.length - 1) {
         if (pivot > arr[i]) {
             swapIdx++
             swap(arr, swapIdx, i)
-            console.log(arr, swapIdx, i)
         }
     }
 
     swap(arr, start, swapIdx)
-    console.log(arr)
     return swapIdx
 }
 
@@ -21,6 +19,18 @@ function swap(arr, idx1, idx2) {
     arr[idx2] = temp;
 }
 
-let arr = [9, 4, 8, 2, 1, 5, 7, 6, 3]
-let pivot = partition(arr)
-console.log(pivot);
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        let pivotIndex = partition(arr, left, right);
+        // left
+        quickSort(arr, left, pivotIndex - 1);
+        // right
+        quickSort(arr, pivotIndex + 1, right);
+    }
+    return arr;
+}
+
+
+let arr = [4, 6, 9, 1, 2, 5, 3];
+let sortedArr = quickSort(arr)
+console.log(sortedArr);

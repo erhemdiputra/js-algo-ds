@@ -19,7 +19,7 @@ class BinarySearchTree {
         }
 
         let current = this.root;
-        while(true) {
+        while (true) {
             if (value === undefined) return undefined;
             if (value < current.value) {
                 if (current.left === null) {
@@ -38,13 +38,14 @@ class BinarySearchTree {
     }
 
     find(value) {
-        if(this.root === null) return false;
-        var current = this.root, found = false;
+        if (this.root === null) return false;
+        var current = this.root,
+            found = false;
 
-        while(current && !found) {
-            if(value < current.value) {
+        while (current && !found) {
+            if (value < current.value) {
                 current = current.left;
-            } else if(value > current.value) {
+            } else if (value > current.value) {
                 current = current.right;
             } else {
                 found = true;
@@ -55,13 +56,14 @@ class BinarySearchTree {
     }
 
     contains(value) {
-        if(this.root === null) return false;
-        var current = this.root, found = false;
+        if (this.root === null) return false;
+        var current = this.root,
+            found = false;
 
-        while(current && !found) {
-            if(value < current.value) {
+        while (current && !found) {
+            if (value < current.value) {
                 current = current.left;
-            } else if(value > current.value) {
+            } else if (value > current.value) {
                 current = current.right;
             } else {
                 return true;
@@ -69,13 +71,28 @@ class BinarySearchTree {
         }
         return false;
     }
+
+    BFS() {
+        var node = this.root,
+            data = [],
+            queue = [];
+
+        queue.push(node);
+
+        while (queue.length) {
+            node = queue.shift();
+            data.push(node.value);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+        return data;
+    }
 }
 
 var tree = new BinarySearchTree();
 tree.insert(10)
-tree.insert(5)
-tree.insert(13)
-tree.insert(11)
-tree.insert(2)
-tree.insert(16)
-tree.insert(7)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)

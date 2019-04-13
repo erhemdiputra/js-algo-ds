@@ -4,7 +4,10 @@ class PriorityQueue {
     }
 
     enqueue(val, priority) {
-        this.values.push({val, priority});
+        this.values.push({
+            val,
+            priority
+        });
         this.sort();
     }
 

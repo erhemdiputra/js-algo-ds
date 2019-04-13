@@ -35,9 +35,9 @@ class Graph {
         const result = [];
         const visited = {};
         const adjacencyList = this.adjacencyList;
-        
+
         (function dfs(vertex) {
-            if(!vertex) return null;
+            if (!vertex) return null;
             visited[vertex] = true
             result.push(vertex)
             adjacencyList[vertex].forEach(neighbor => {
@@ -58,7 +58,7 @@ class Graph {
 
         visited[start] = true;
 
-        while(stack.length) {
+        while (stack.length) {
             currentVertex = stack.pop();
             result.push(currentVertex);
 
@@ -72,6 +72,29 @@ class Graph {
 
         return result
     }
+
+    breadthFirst(start) {
+        const queue = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        visited[start] = true;
+
+        while (queue.length) {
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            });
+        }
+
+        return result;
+    }
 }
 
 let g = new Graph();
@@ -84,11 +107,11 @@ g.addVertex("F")
 
 g.addEdge("A", "B")
 g.addEdge("A", "C")
-g.addEdge("B","D")
-g.addEdge("C","E")
-g.addEdge("D","E")
-g.addEdge("D","F")
-g.addEdge("E","F")
+g.addEdge("B", "D")
+g.addEdge("C", "E")
+g.addEdge("D", "E")
+g.addEdge("D", "F")
+g.addEdge("E", "F")
 
 //          A
 //        /   \
